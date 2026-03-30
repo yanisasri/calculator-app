@@ -453,9 +453,8 @@
 
   <!-- QR codes section -->
   <div id="qr-section">
-    <h3>🤔 want to give feedback or something idk</h3>
+    <h3>🤔 want to give feedback</h3>
     <div class="qr-box">
-      <div class="qr-label">idk where this will take you tbh</div>
       <div class="qr-placeholder">
         <img width="100" height="100" src="images/qr-fake.png">
           <rect width="100" height="100" fill="white"/>
@@ -476,7 +475,6 @@
       </div>
     </div>
     <div class="qr-box">
-      <div class="qr-label">lowkey idk which is which lol</div>
       <div class="qr-placeholder">
         <img width="100" height="100" src="images/qr-suggestions.png">
           <rect width="100" height="100" fill="white"/>
@@ -504,7 +502,7 @@
 <div id="popup-21" class="meme-popup">
   <button class="close-x" onclick="closePopup('popup-21')">X</button>
   <h2 style="font-family:Boogaloo">9 + 10 = 21 😤</h2>
-  <video src="videos/21-meme.mp4" autoplay loop controls style="max-width:300px"></video>
+  <video src="videos/21-meme.mp4" loop controls style="max-width:300px"></video>
 </div>
 <div id="popup-25" class="meme-popup">
   <button class="close-x" onclick="closePopup('popup-25')">X</button>
@@ -512,24 +510,24 @@
 </div>
 <div id="popup-67" class="meme-popup">
   <button class="close-x" onclick="closePopup('popup-67')">X</button>
-  <video src="videos/67.mp4" autoplay loop controls style="max-width:300px"></video>
+  <video src="videos/67.mp4" loop controls style="max-width:300px"></video>
 </div>
 <div id="popup-17" class="meme-popup">
   <button class="close-x" onclick="closePopup('popup-17')">X</button>
-  <video src="videos/she-was-17.mp4" autoplay loop controls style="max-width:300px"></video>
+  <video src="videos/she-was-17.mp4" loop controls style="max-width:300px"></video>
 </div>
 <div id="popup-314" class="meme-popup">
   <button class="close-x" onclick="closePopup('popup-314')">X</button>
-  <video src="videos/314-pie.mp4" autoplay loop controls style="max-width:300px"></video>
+  <video src="videos/314-pie.mp4" loop controls style="max-width:300px"></video>
   <p style="font-family:Comic Neue">YOU ARE BEING PIED 🥧</p>
 </div>
 <div id="popup-1738" class="meme-popup">
   <button class="close-x" onclick="closePopup('popup-1738')">X</button>
-  <video src="videos/1738.mp4" autoplay loop controls style="max-width:300px"></video>
+  <video src="videos/1738.mp4" loop controls style="max-width:300px"></video>
 </div>
 <div id="popup-68" class="meme-popup">
   <button class="close-x" onclick="closePopup('popup-68')">X</button>
-  <video src="videos/68.mp4" autoplay loop controls style="max-width:300px"></video>
+  <video src="videos/68.mp4" loop controls style="max-width:300px"></video>
 </div>
 
 <!-- Goose popup -->
@@ -924,8 +922,10 @@ function calcEquals() {
   equalsCount++;
   const vid = document.getElementById('equals-video');
   vid.src = equalsCount % 2 === 1 ? 'videos/nick.mp4' : 'videos/judy.mp4';
+  stopCurrentMedia();
   document.getElementById('equals-popup').style.display = 'block';
   document.getElementById('overlay-bg').style.display = 'block';
+  playVideo(vid);
 }
 
 function parseInputNumber(str) {
@@ -958,11 +958,15 @@ let popupQueue = [];
 
 function triggerPopup(id) {
   popupCount++;
+  stopCurrentMedia();
   const el = document.getElementById(id);
   if (el) {
     el.style.display = 'block';
     el.style.zIndex = 8000 + popupCount;
     document.getElementById('overlay-bg').style.display = 'block';
+    // Auto-play any video inside this popup via the soundboard channel
+    const vid = el.querySelector('video');
+    if (vid) playVideo(vid);
   }
   // Every 4th popup, show goose
   if (popupCount % 4 === 0 && !gooseActive) {
@@ -973,7 +977,10 @@ function triggerPopup(id) {
 function closePopup(id) {
   const el = document.getElementById(id);
   // Stop any videos inside the popup
-  el.querySelectorAll('video').forEach(v => { v.pause(); v.currentTime = 0; });
+  el.querySelectorAll('video').forEach(v => {
+    v.pause(); v.currentTime = 0;
+    if (currentVid === v) currentVid = null;
+  });
   el.style.display = 'none';
   // Check if any popups still open
   const openPopups = document.querySelectorAll('.meme-popup[style*="block"]');
@@ -984,7 +991,10 @@ function closePopup(id) {
 
 function closeEqualsPopup() {
   const el = document.getElementById('equals-popup');
-  el.querySelectorAll('video').forEach(v => { v.pause(); v.currentTime = 0; });
+  el.querySelectorAll('video').forEach(v => {
+    v.pause(); v.currentTime = 0;
+    if (currentVid === v) currentVid = null;
+  });
   el.style.display = 'none';
   document.getElementById('overlay-bg').style.display = 'none';
 }
@@ -1019,8 +1029,14 @@ function prevLetter() {
 // Background music elements (loop continuously, managed separately)
 const bgMusicIds = new Set(['audio-cookies','audio-butterfly','audio-baby-sticker','audio-one-more-time']);
 
-// Single soundboard channel — only one sound effect plays at a time
+// Single soundboard channel — only one sound effect OR video plays at a time
 let currentSfx = null;
+let currentVid = null;
+
+function stopCurrentMedia() {
+  if (currentSfx) { currentSfx.pause(); currentSfx.currentTime = 0; currentSfx = null; }
+  if (currentVid) { currentVid.pause(); currentVid.currentTime = 0; currentVid = null; }
+}
 
 function playAudio(id) {
   // Background music: plays independently, not interrupted by soundboard
@@ -1031,19 +1047,25 @@ function playAudio(id) {
 function playSound(id) {
   const el = document.getElementById(id);
   if (!el) return;
-  // Stop the currently playing sound effect (if any)
-  if (currentSfx && currentSfx !== el) {
-    currentSfx.pause();
-    currentSfx.currentTime = 0;
-  }
+  stopCurrentMedia();
   currentSfx = el;
+  el.currentTime = 0;
+  el.play().catch(()=>{});
+}
+
+function playVideo(el) {
+  if (!el) return;
+  stopCurrentMedia();
+  currentVid = el;
   el.currentTime = 0;
   el.play().catch(()=>{});
 }
 
 function stopAllAudio() {
   document.querySelectorAll('audio').forEach(a => { a.pause(); a.currentTime = 0; });
+  document.querySelectorAll('video').forEach(v => { v.pause(); v.currentTime = 0; });
   currentSfx = null;
+  currentVid = null;
 }
 
 // ==================== PAGE ROUTING ====================
@@ -1052,7 +1074,7 @@ function showPage(name) {
   document.getElementById('page-' + name).classList.add('active');
   // Stop all audio when switching except on specific pages
   stopAllAudio();
-  if (name === 'landing') playAudio('audio-butterfly');
+  // landing audio is handled by acceptCookies()
   if (name === 'login') { /* audio set up in setupLogin */ }
 }
 
