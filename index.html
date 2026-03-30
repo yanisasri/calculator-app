@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WELCOME TO OUR WEBSITE!!!!!!</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Comic+Neue:wght@700&family=Lobster&family=Permanent+Marker&family=Satisfy&family=Dancing+Script:wght@700&family=Abril+Fatface&family=Boogaloo&family=Righteous&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ======== COOKIE POPUP ======== */
+  #cookie-popup {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    background: lime; border: 8px dashed red; padding: 30px; z-index: 9999;
+    font-family: 'Comic Neue', cursive; font-size: 22px; text-align: center;
+    box-shadow: 0 0 0 8px blue, 0 0 0 16px yellow;
+    animation: shake 0.3s infinite;
+    max-width: 400px; width: 90%;
+  }
+  #cookie-popup h2 { font-size: 28px; color: red; margin-bottom: 10px; font-family: 'Permanent Marker'; }
+  #cookie-popup button {
+    background: red; color: yellow; border: 4px solid blue;
+    font-size: 20px; padding: 10px 20px; cursor: pointer;
+    font-family: 'Boogaloo'; margin-top: 15px;
+    animation: spin 2s linear infinite;
+  }
+  @keyframes shake {
+    0%,100% { transform: translate(-50%,-50%) rotate(-1deg); }
+    50% { transform: translate(-50%,-50%) rotate(1deg); }
+  }
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+  /* ======== LANDING PAGE ======== */
+  #page-landing {
+    min-height: 100vh; background: #ff00ff;
+    padding: 40px 20px; font-family: 'Comic Neue', cursive;
+    background-image: repeating-linear-gradient(45deg, rgba(255,255,0,0.3) 0px, rgba(255,255,0,0.3) 10px, transparent 10px, transparent 20px);
+    position: relative;
+  }
+  #page-landing h1 {
+    font-family: 'Permanent Marker'; font-size: 60px; color: #00ff00;
+    text-shadow: 4px 4px red, -2px -2px blue; text-align: center;
+    transform: rotate(-5deg); margin-bottom: 30px;
+  }
+  #page-landing h2 { font-family: 'Lobster'; font-size: 28px; color: white; text-align: center; margin-bottom: 20px; }
+  .colorblind-option {
+    display: block; width: 80%; margin: 10px auto; padding: 15px 20px;
+    font-size: 20px; cursor: pointer; border: 4px solid black;
+    font-family: 'Boogaloo'; text-align: center;
+  }
+  .opt-normal { background: #888; color: white; }
+  .opt-rg { background: red; color: green; font-size: 24px; }
+  .opt-by { background: blue; color: yellow; font-size: 18px; }
+  .opt-mono { background: #555; color: #aaa; }
+  .opt-tritanopia { background: #00ffff; color: #ff6600; }
+  .colorblind-option input { margin-right: 10px; transform: scale(2); }
+  #landing-next-btn {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 1; background: transparent; cursor: pointer; border: none;
+  }
+  #landing-form { position: relative; z-index: 2; }
+  #job-popup {
+    display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    z-index: 9998; background: white; padding: 20px; border: 5px solid red;
+    text-align: center; font-family: 'Comic Neue';
+  }
+  #job-popup img { width: 300px; display: block; }
+  #job-popup button { background: red; color: white; border: none; padding: 10px 20px; font-size: 18px; cursor: pointer; margin-top: 10px; }
+
+  /* ======== COLOR VISION TEST PAGE ======== */
+  #page-cvtest {
+    display: none; min-height: 100vh;
+    background: repeating-radial-gradient(circle, #ff9900, #ff0000 20px, #ff9900 40px);
+    display: none; align-items: center; justify-content: center; flex-direction: column;
+    font-family: 'Fredoka One'; padding: 20px;
+  }
+  #cvtest-inner {
+    background: rgba(255,255,255,0.9); border-radius: 50%; width: 350px; height: 350px;
+    display: flex; align-items: center; justify-content: center; flex-direction: column;
+    border: 10px solid black; position: relative;
+  }
+  #cvtest-circle {
+    width: 280px; height: 280px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 100px; font-weight: bold; position: relative; overflow: hidden;
+  }
+  .dot-pattern { position: absolute; width: 100%; height: 100%; }
+  #cvtest-number-display { font-size: 90px; font-family: 'Abril Fatface'; z-index: 1; }
+  #cvtest-input { font-size: 28px; padding: 10px; width: 120px; text-align: center; margin: 20px auto 10px; display: block; border: 4px solid red; }
+  #cvtest-submit { background: green; color: white; font-size: 22px; padding: 10px 30px; border: none; cursor: pointer; font-family: 'Fredoka One'; }
+  #cvtest-error { color: red; font-size: 20px; display: none; font-family: 'Comic Neue'; }
+  #page-cvtest h1 { color: white; font-size: 36px; margin-bottom: 20px; text-shadow: 3px 3px black; text-align: center; }
+
+  /* ======== LOGIN PAGE ======== */
+  #page-login {
+    display: none; min-height: 100vh; overflow: auto;
+    position: relative;
+    background: #111;
+  }
+  .tv-static {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none; z-index: 0; opacity: 0.08;
+    animation: staticAnim 0.05s steps(1) infinite;
+  }
+  @keyframes staticAnim {
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 100%; }
+  }
+  #login-content { position: relative; z-index: 1; min-width: 2000px; padding: 40px; }
+  #login-title {
+    font-family: 'Satisfy'; font-size: 8px; color: #ccc;
+    position: absolute; top: 5px; left: 5px;
+  }
+  #login-title-big {
+    font-family: 'Dancing Script'; font-size: 12px; color: rgba(255,255,255,0.3);
+    text-align: left; margin-bottom: 5px;
+  }
+  .login-field-wrap { display: inline-block; }
+  #password-wrap { margin-top: 200px; margin-left: 50px; }
+  #email-wrap { margin-top: 100px; margin-left: 900px; display: inline-block; }
+  .login-label { font-family: 'Lobster'; font-size: 40px; color: #ff00ff; display: block; }
+  .login-input {
+    width: 600px; height: 200px; font-size: 50px;
+    border: 8px dashed lime; background: #000; color: #0f0;
+    font-family: 'Permanent Marker'; padding: 10px;
+    display: block; margin-bottom: 20px;
+  }
+  /* Bouncing submit button */
+  #submit-wrap { position: fixed; z-index: 10; }
+  #submit-btn {
+    background: orange; color: purple; border: 6px solid cyan;
+    font-size: 28px; padding: 20px 40px; cursor: pointer;
+    font-family: 'Righteous'; white-space: nowrap;
+  }
+  #confirm-msg {
+    display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    background: yellow; border: 8px solid red; padding: 30px; z-index: 9999;
+    font-family: 'Comic Neue'; font-size: 24px; text-align: center; max-width: 400px;
+  }
+  #confirm-msg button { background: green; color: white; border: none; font-size: 20px; padding: 10px 25px; cursor: pointer; margin-top: 15px; font-family: 'Boogaloo'; }
+  #one-more-msg {
+    display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    background: cyan; border: 8px dotted magenta; padding: 30px; z-index: 9999;
+    font-family: 'Pacifico'; font-size: 28px; text-align: center;
+  }
+  /* Keyboard */
+  #keyboard-wrap {
+    position: fixed; bottom: 0; left: 0; width: 100vw; background: #222;
+    overflow-x: auto; white-space: nowrap; padding: 10px 0; z-index: 20;
+    border-top: 4px solid lime;
+  }
+  .kb-key {
+    display: inline-block; background: #444; color: #fff; border: 2px solid #888;
+    padding: 12px 16px; margin: 2px; cursor: pointer; font-size: 18px;
+    font-family: 'Boogaloo'; min-width: 50px; text-align: center;
+    vertical-align: middle;
+  }
+  .kb-key:hover { background: #00ff00; color: #000; }
+  .kb-key.caps-key { background: red; color: white; margin-left: 50px; }
+
+  /* ======== CALCULATOR PAGE ======== */
+  #page-calc {
+    display: none; min-height: 100vh; overflow: auto;
+    background: #1a0030; padding: 20px; font-family: 'Fredoka One';
+  }
+  #calc-title { font-family: 'Abril Fatface'; font-size: 48px; color: #ff00ff; text-align: center; margin-bottom: 10px; text-shadow: 3px 3px cyan; }
+  #calc-display {
+    background: #000; color: #00ff00; font-size: 48px; padding: 20px;
+    min-height: 80px; text-align: right; border: 4px solid lime;
+    font-family: 'Permanent Marker'; margin-bottom: 20px; overflow: hidden;
+    word-break: break-all;
+  }
+  /* Cross layout for numbers */
+  #calc-number-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 80px);
+    grid-template-rows: repeat(6, 80px);
+    gap: 5px; margin: 20px auto; width: fit-content;
+    position: relative;
+  }
+  .calc-num-btn {
+    width: 80px; height: 80px; cursor: pointer; background: none; border: none;
+    font-size: 36px; font-family: 'Fredoka One'; display: flex; align-items: center; justify-content: center;
+    border-radius: 8px; transition: transform 0.1s;
+  }
+  .calc-num-btn:hover { transform: scale(1.2) rotate(5deg); }
+  .calc-num-btn img { width: 70px; height: 70px; object-fit: contain; }
+  .ghost { visibility: hidden; }
+  /* Operator buttons scattered around */
+  .op-btn {
+    position: fixed; background: #ff6600; color: white;
+    border: 4px solid yellow; font-size: 30px; padding: 15px 20px;
+    cursor: pointer; font-family: 'Pacifico'; border-radius: 50%;
+    z-index: 5;
+  }
+  #op-plus { bottom: 120px; right: 20px; }
+  #op-minus { top: 100px; left: 10px; }
+  #op-mul { bottom: 40px; left: 200px; }
+  #op-div { top: 200px; right: 50px; }
+  #op-equals { bottom: 60px; right: 100px; background: magenta; font-size: 36px; padding: 20px; }
+  #op-clear { top: 60px; right: 150px; background: red; }
+  /* Popups */
+  .meme-popup {
+    display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    background: white; border: 6px solid red; z-index: 8000; padding: 10px;
+    max-width: 90vw; max-height: 80vh; overflow: auto; text-align: center;
+  }
+  .meme-popup .close-x {
+    position: absolute; top: 5px; right: 10px; font-size: 24px; cursor: pointer;
+    background: red; color: white; border: none; padding: 2px 10px; font-family: 'Boogaloo';
+  }
+  .meme-popup img, .meme-popup video { max-width: 300px; max-height: 300px; display: block; margin: 0 auto; }
+  /* Goose popup */
+  #goose-popup {
+    position: fixed; bottom: 0; z-index: 9000;
+    animation: gooseSlide 8s linear forwards;
+    display: none;
+  }
+  @keyframes gooseSlide {
+    0% { right: -400px; }
+    100% { right: 0; }
+  }
+  #goose-popup .goose-img { font-size: 80px; }
+  #goose-popup .goose-meme { width: 250px; background: white; border: 5px solid black; display: inline-block; vertical-align: bottom; padding: 10px; position: relative; }
+  #goose-popup .close-x { position: absolute; top: 5px; right: 5px; background: red; color: white; border: none; cursor: pointer; font-size: 20px; padding: 2px 8px; }
+  /* equals alternating popup */
+  #equals-popup {
+    display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    background: black; border: 6px solid gold; z-index: 8500; padding: 15px; text-align: center;
+  }
+  #equals-popup .close-x { display: block; background: red; color: white; border: none; font-size: 20px; cursor: pointer; margin: 10px auto 0; padding: 5px 15px; }
+  #equals-popup video { width: 280px; }
+  /* QR section */
+  #qr-section { margin-top: 40px; text-align: center; }
+  #qr-section h3 { font-family: 'Comic Neue'; color: white; font-size: 14px; margin-bottom: 10px; }
+  .qr-label { font-family: 'Permanent Marker'; font-size: 24px; color: lime; }
+  .qr-box { display: inline-block; margin: 10px; }
+  .qr-placeholder { width: 120px; height: 120px; background: white; border: 3px solid black; display: flex; align-items: center; justify-content: center; font-size: 10px; color: black; font-family: monospace; text-align: center; }
+
+  /* ======== SUGGESTIONS PAGE ======== */
+  #page-suggestions {
+    display: none; min-height: 100vh;
+    background: #ffe0e0; padding: 30px; overflow: auto;
+  }
+  #page-suggestions h1 { font-family: 'Pacifico'; font-size: 52px; color: #cc0000; text-align: center; margin-bottom: 30px; transform: rotate(2deg); }
+  .fake-textbox {
+    background: white; border: 2px solid #ccc; padding: 15px; width: 80%; margin: 15px auto;
+    display: block; font-size: 18px; color: #999; font-family: 'Comic Neue';
+    cursor: not-allowed; min-height: 60px;
+  }
+  /* One-letter keyboard */
+  #letter-keyboard { text-align: center; margin: 30px auto; }
+  #letter-display {
+    font-size: 60px; font-family: 'Abril Fatface'; background: white;
+    width: 120px; height: 120px; line-height: 120px; text-align: center;
+    margin: 0 auto 20px; border: 4px solid black; display: block;
+  }
+  #letter-back { font-size: 36px; padding: 15px 30px; background: gray; color: white; border: 4px solid black; cursor: pointer; font-family: 'Boogaloo'; }
+  #letter-back:hover { background: #555; }
+  #letter-keyboard p { font-family: 'Comic Neue'; font-size: 16px; color: #666; margin-top: 10px; }
+
+  /* page visibility */
+  .page { display: none; }
+  .page.active { display: block; }
+  #page-landing.active { display: block; }
+  #page-cvtest.active { display: flex; }
+  #page-login.active { display: block; }
+  #page-calc.active { display: block; }
+  #page-suggestions.active { display: block; }
+
+  /* number image fallbacks */
+  .num-img-fallback {
+    width: 70px; height: 70px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; font-weight: bold; font-family: 'Abril Fatface';
+    border: 3px solid rgba(255,255,255,0.5);
+  }
+
+  #overlay-bg {
+    display: none; position: fixed; top:0; left:0; width:100vw; height:100vh;
+    background: rgba(0,0,0,0.6); z-index: 7999;
+  }
+</style>
+</head>
+<body>
+
+<!-- AUDIO ELEMENTS -->
+<audio id="audio-cookies" src="audio/cookies.mp3" loop></audio>
+<audio id="audio-butterfly" src="butterfly.mp3" loop></audio>
+<audio id="audio-baby-sticker" src="audio/baby-sticker.mp3" loop></audio>
+<audio id="audio-one-more-time" src="audio/one-more-time.mp3" loop></audio>
+<audio id="audio-wow" src="audio/wow.mp3"></audio>
+<audio id="audio-ahlelele" src="audio/ahlelele.mp3"></audio>
+<audio id="audio-urphonelinging" src="audio/urphonelinging.mp3"></audio>
+<audio id="audio-baka" src="audio/baka.mp3"></audio>
+<audio id="audio-v1" src="audio/victory-royale.mp3"></audio>
+<audio id="audio-v2" src="audio/microwave.mp3"></audio>
+<audio id="audio-v3" src="audio/bing-bong.mp3"></audio>
+<audio id="audio-v4" src="audio/fahhh.mp3"></audio>
+<audio id="audio-v5" src="audio/bruh.mp3"></audio>
+<audio id="audio-v6" src="audio/suedby6.mp3"></audio>
+<audio id="audio-v7" src="audio/omg.mp3"></audio>
+<audio id="audio-v8" src="audio/nina.mp3"></audio>
+<audio id="audio-v0" src="audio/oee.mp3"></audio>
+<audio id="audio-burgerking" src="audio/burgerking.mp3"></audio>
+<audio id="audio-44" src="audio/44-thats-me.mp3"></audio>
+<audio id="audio-19beans" src="audio/number19beans.mp3"></audio>
+<audio id="audio-ripgranny" src="audio/rip-granny.mp3"></audio>
+
+<!-- OVERLAY -->
+<div id="overlay-bg"></div>
+
+<!-- COOKIE POPUP -->
+<div id="cookie-popup">
+  <h2>🍪 WE USE COOKIES!!! 🍪</h2>
+  <p>By existing on the internet you agree to let us collect ALL your data including your thoughts, dreams, and sandwich preferences.</p>
+  <button onclick="acceptCookies()">I ACCEPT (you have no choice)</button>
+</div>
+
+<!-- JOB POPUP -->
+<div id="job-popup">
+  <h2 style="font-family:Comic Neue;color:red">L... read the instructions</h2>
+  <img src="images/job-application.jpeg">
+  <button onclick="document.getElementById('job-popup').style.display='none'">...</button>
+</div>
+
+<!-- ===== LANDING PAGE ===== -->
+<div id="page-landing" class="page active">
+  <h1>WELCOME TO OUR WEBSITE!!!!! 🌈🎉🔥</h1>
+  <h2>Please select which types of colorblindness you DO NOT have:<br><small style="font-size:14px">(select ALL that do not apply to you)</small></h2>
+  <div id="landing-form">
+    <label class="colorblind-option opt-normal">
+      <input type="checkbox" value="normal" onchange="updateSelection()"> Not colorblind (I see all colors fine) 
+    </label>
+    <label class="colorblind-option opt-rg">
+      <input type="checkbox" value="rg" onchange="updateSelection()"> Red-Green colorblindness (Deuteranopia / Protanopia)
+    </label>
+    <label class="colorblind-option opt-by">
+      <input type="checkbox" value="by" onchange="updateSelection()"> Blue-Yellow colorblindness (Tritanopia)
+    </label>
+    <label class="colorblind-option opt-mono">
+      <input type="checkbox" value="mono" onchange="updateSelection()"> Total colorblindness (Achromatopsia)
+    </label>
+    <label class="colorblind-option opt-tritanopia">
+      <input type="checkbox" value="tritanopia" onchange="updateSelection()"> Cyan-Orange colorblindness (Tritanomaly)
+    </label>
+  </div>
+  <!-- invisible background button -->
+  <button id="landing-next-btn" onclick="tryGoNext()"></button>
+</div>
+
+<!-- ===== COLOR VISION TEST ===== -->
+<div id="page-cvtest" class="page">
+  <h1>🔴 COLOR VISION TEST 🟢<br><small style="font-size:18px">Enter the number you see in the circle below!</small></h1>
+  <div id="cvtest-inner">
+    <div id="cvtest-circle">
+      <canvas id="ishihara-canvas" width="260" height="260"></canvas>
+    </div>
+  </div>
+  <br>
+  <input type="text" id="cvtest-input" placeholder="Enter number..." maxlength="4" style="font-family:Fredoka One;border-radius:8px;">
+  <button id="cvtest-submit" onclick="checkCVTest()">SUBMIT →</button>
+  <div id="cvtest-error">❌ WRONG! Try again... unless you ARE colorblind 🤔</div>
+</div>
+
+<!-- ===== LOGIN PAGE ===== -->
+<div id="page-login" class="page">
+  <canvas class="tv-static" id="static-canvas"></canvas>
+  <div id="login-content">
+    <div id="login-title-big">🔐 Login Portal 🔐</div>
+    <div id="login-title">pls log in thank you</div>
+    
+    <!-- Password at top left (big and weird) -->
+    <div id="password-wrap" class="login-field-wrap">
+      <label class="login-label" style="font-family:Dancing Script;color:#ff00ff">🔑 PassWORD:</label>
+      <input type="text" id="login-password" class="login-input" placeholder="••••••••" readonly style="font-family:Satisfy;">
+    </div>
+    
+    <!-- Email far right, off screen -->
+    <div id="email-wrap" class="login-field-wrap">
+      <label class="login-label" style="font-family:Pacifico;color:#00ffff;font-size:28px">📧 eMAIL address...:</label>
+      <input type="text" id="login-email" class="login-input" placeholder="your@email.com" readonly style="font-family:Lobster;width:800px;transform:rotate(-3deg);">
+    </div>
+
+    <div style="height:300px;"></div>
+  </div>
+
+  <!-- Keyboard at bottom -->
+  <div id="keyboard-wrap" id="kb-scroll">
+    <!-- Keys injected by JS -->
+  </div>
+
+  <!-- Bouncing submit button -->
+  <div id="submit-wrap">
+    <button id="submit-btn" onclick="handleSubmit()">SUBMIT!!!</button>
+  </div>
+</div>
+
+<!-- Confirm message -->
+<div id="confirm-msg">
+  <h2 style="font-family:Lobster;color:green">✅ This email is connected to this password!</h2>
+  <p style="font-family:Comic Neue">Is this you?? Press NEXT to continue 🤔</p>
+  <button onclick="handleConfirm()">NEXT →</button>
+</div>
+<div id="one-more-msg">
+  <h2>ONE MORE TIME... 🎵</h2>
+  <p style="font-family:Comic Neue;font-size:18px">Press submit ONE MORE TIME to proceed!!!!!!</p>
+  <button onclick="document.getElementById('one-more-msg').style.display='none';document.getElementById('overlay-bg').style.display='none';" style="background:magenta;color:white;border:none;font-size:20px;padding:10px 25px;cursor:pointer;font-family:Boogaloo">ok fine</button>
+</div>
+
+<!-- ===== CALCULATOR PAGE ===== -->
+<div id="page-calc" class="page">
+  <div id="calc-title">🧮 CALCUMALATTOR 3000™ 🧮</div>
+  <div id="calc-display">0</div>
+
+  <!-- Number grid cross pattern -->
+  <div id="calc-number-grid">
+    <!-- Row 1: only col 3 (1) -->
+    <div class="ghost"></div><div class="ghost"></div>
+    <button class="calc-num-btn" onclick="calcPress('1')"><div class="num-img-fallback" style="background:#e74c3c;color:white">1</div></button>
+    <div class="ghost"></div><div class="ghost"></div>
+    <!-- Row 2: only col 3 (2) -->
+    <div class="ghost"></div><div class="ghost"></div>
+    <button class="calc-num-btn" onclick="calcPress('2')"><div class="num-img-fallback" style="background:#e67e22;color:white">2</div></button>
+    <div class="ghost"></div><div class="ghost"></div>
+    <!-- Row 3: cols 1-5 (3,4,5,6,7) -->
+    <button class="calc-num-btn" onclick="calcPress('3')"><div class="num-img-fallback" style="background:#f1c40f;color:black">3</div></button>
+    <button class="calc-num-btn" onclick="calcPress('4')"><div class="num-img-fallback" style="background:#2ecc71;color:white">4</div></button>
+    <button class="calc-num-btn" onclick="calcPress('5')"><div class="num-img-fallback" style="background:#1abc9c;color:white">5</div></button>
+    <button class="calc-num-btn" onclick="calcPress('6')"><div class="num-img-fallback" style="background:#3498db;color:white">6</div></button>
+    <button class="calc-num-btn" onclick="calcPress('7')"><div class="num-img-fallback" style="background:#9b59b6;color:white">7</div></button>
+    <!-- Row 4: only col 3 (8) -->
+    <div class="ghost"></div><div class="ghost"></div>
+    <button class="calc-num-btn" onclick="calcPress('8')"><div class="num-img-fallback" style="background:#e91e63;color:white">8</div></button>
+    <div class="ghost"></div><div class="ghost"></div>
+    <!-- Row 5: only col 3 (9) -->
+    <div class="ghost"></div><div class="ghost"></div>
+    <button class="calc-num-btn" onclick="calcPress('9')"><div class="num-img-fallback" style="background:#673ab7;color:white">9</div></button>
+    <div class="ghost"></div><div class="ghost"></div>
+    <!-- Row 6: only col 3 (0) -->
+    <div class="ghost"></div><div class="ghost"></div>
+    <button class="calc-num-btn" onclick="calcPress('0')"><div class="num-img-fallback" style="background:#607d8b;color:white">0</div></button>
+    <div class="ghost"></div><div class="ghost"></div>
+  </div>
+
+  <!-- Scattered operators -->
+  <button class="op-btn" id="op-plus" onclick="calcOp('+')">+</button>
+  <button class="op-btn" id="op-minus" onclick="calcOp('-')">−</button>
+  <button class="op-btn" id="op-mul" onclick="calcOp('×')">×</button>
+  <button class="op-btn" id="op-div" onclick="calcOp('÷')">÷</button>
+  <button class="op-btn" id="op-clear" onclick="calcClear()">CLR</button>
+  <button class="op-btn" id="op-equals" onclick="calcEquals()">=</button>
+
+  <!-- QR codes section -->
+  <div id="qr-section">
+    <h3>🤔 want to give feedback or something idk</h3>
+    <div class="qr-box">
+      <div class="qr-label">idk where this will take you tbh</div>
+      <div class="qr-placeholder">
+        <img width="100" height="100" src="images/qr-fake.png">
+          <rect width="100" height="100" fill="white"/>
+          <rect x="10" y="10" width="30" height="30" fill="none" stroke="black" stroke-width="4"/>
+          <rect x="15" y="15" width="20" height="20" fill="black"/>
+          <rect x="60" y="10" width="30" height="30" fill="none" stroke="black" stroke-width="4"/>
+          <rect x="65" y="15" width="20" height="20" fill="black"/>
+          <rect x="10" y="60" width="30" height="30" fill="none" stroke="black" stroke-width="4"/>
+          <rect x="15" y="65" width="20" height="20" fill="black"/>
+          <rect x="50" y="50" width="5" height="5" fill="black"/>
+          <rect x="60" y="55" width="5" height="5" fill="black"/>
+          <rect x="70" y="50" width="5" height="5" fill="black"/>
+          <rect x="65" y="65" width="5" height="5" fill="black"/>
+          <rect x="80" y="70" width="5" height="5" fill="black"/>
+          <rect x="55" y="75" width="5" height="5" fill="black"/>
+          <rect x="75" y="80" width="5" height="5" fill="black"/>
+        </svg>
+      </div>
+    </div>
+    <div class="qr-box">
+      <div class="qr-label">lowkey idk which is which lol</div>
+      <div class="qr-placeholder">
+        <img width="100" height="100" src="images/qr-suggestions.png">
+          <rect width="100" height="100" fill="white"/>
+          <rect x="10" y="10" width="30" height="30" fill="none" stroke="black" stroke-width="4"/>
+          <rect x="15" y="15" width="20" height="20" fill="black"/>
+          <rect x="60" y="10" width="30" height="30" fill="none" stroke="black" stroke-width="4"/>
+          <rect x="65" y="15" width="20" height="20" fill="black"/>
+          <rect x="10" y="60" width="30" height="30" fill="none" stroke="black" stroke-width="4"/>
+          <rect x="15" y="65" width="20" height="20" fill="black"/>
+          <rect x="52" y="52" width="8" height="8" fill="black"/>
+          <rect x="62" y="58" width="8" height="8" fill="black"/>
+          <rect x="72" y="52" width="8" height="8" fill="black"/>
+          <rect x="58" y="68" width="8" height="8" fill="black"/>
+          <rect x="78" y="68" width="8" height="8" fill="black"/>
+          <rect x="52" y="78" width="8" height="8" fill="black"/>
+          <rect x="72" y="78" width="8" height="8" fill="black"/>
+        </svg>
+      </div>
+    </div>
+    <p style="color:#aaa;font-size:12px;font-family:Comic Neue">scan one of these to leave feedback! (good luck figuring out which one... cuz we don[t know lol])</p>
+  </div>
+</div>
+
+<!-- Meme popups -->
+<div id="popup-21" class="meme-popup">
+  <button class="close-x" onclick="closePopup('popup-21')">X</button>
+  <h2 style="font-family:Boogaloo">9 + 10 = 21 😤</h2>
+  <video src="videos/21-meme.mp4" autoplay loop controls style="max-width:300px"></video>
+</div>
+<div id="popup-25" class="meme-popup">
+  <button class="close-x" onclick="closePopup('popup-25')">X</button>
+  <img src="images/leo-25.png">
+</div>
+<div id="popup-67" class="meme-popup">
+  <button class="close-x" onclick="closePopup('popup-67')">X</button>
+  <video src="videos/67.mp4" autoplay loop controls style="max-width:300px"></video>
+</div>
+<div id="popup-17" class="meme-popup">
+  <button class="close-x" onclick="closePopup('popup-17')">X</button>
+  <video src="videos/she-was-17.mp4" autoplay loop controls style="max-width:300px"></video>
+</div>
+<div id="popup-314" class="meme-popup">
+  <button class="close-x" onclick="closePopup('popup-314')">X</button>
+  <video src="videos/314-pie.mp4" autoplay loop controls style="max-width:300px"></video>
+  <p style="font-family:Comic Neue">YOU ARE BEING PIED 🥧</p>
+</div>
+<div id="popup-1738" class="meme-popup">
+  <button class="close-x" onclick="closePopup('popup-1738')">X</button>
+  <video src="videos/1738.mp4" autoplay loop controls style="max-width:300px"></video>
+</div>
+<div id="popup-68" class="meme-popup">
+  <button class="close-x" onclick="closePopup('popup-68')">X</button>
+  <video src="videos/68.mp4" autoplay loop controls style="max-width:300px"></video>
+</div>
+
+<!-- Goose popup -->
+<div id="goose-popup">
+  <span class="goose-img">🦆</span>
+  <div class="goose-meme">
+    <button class="close-x" onclick="closeGoose()">X</button>
+    <div id="goose-content" style="font-size:40px;text-align:center;padding:20px">🦆</div>
+  </div>
+</div>
+
+<!-- Equals popup (alternating nick/judy) -->
+<div id="equals-popup">
+  <video id="equals-video" src=vid.src autoplay loop controls style="width:280px"></video>
+  <button class="close-x" onclick="closeEqualsPopup()">Close</button>
+</div>
+
+<!-- ===== SUGGESTIONS PAGE ===== -->
+<div id="page-suggestions" class="page">
+  <h1>suggestions to make our site better!</h1>
+  <p style="font-family:Comic Neue;text-align:center;color:#666;margin-bottom:20px">(we really care about your feedback! totally.)</p>
+
+  <div class="fake-textbox">Name</div>
+  <div class="fake-textbox">Email address</div>
+  <div class="fake-textbox" style="min-height:120px">Your suggestions</div>
+  <div class="fake-textbox">How much do you hate this website? (1-10)</div>
+  <div class="fake-textbox">Other thoughts</div>
+
+  <div id="letter-keyboard">
+    <h2 style="font-family:Dancing Script;font-size:32px;color:#cc0000">Use our keyboard to type! (no submit button lol)</h2>
+    <div id="letter-display">Z</div>
+    <button id="letter-back" onclick="prevLetter()">← previous letter</button>
+    <p>(only goes backwards. you're welcome.)</p>
+    <p style="font-size:12px">there's no enter button. there's also no textbox. enjoy.</p>
+  </div>
+
+  <div style="text-align:center;margin-top:40px">
+    <button onclick="showPage('calc')" style="background:#cc0000;color:white;border:none;padding:15px 30px;font-size:20px;cursor:pointer;font-family:Boogaloo">← go back to the calculator</button>
+  </div>
+</div>
+
+<script>
+// ==================== STATE ====================
+let colorblindType = 'normal'; // detected from landing page
+let selectedOptions = [];
+let submitCount = 0;
+let calcDisplay = '0';
+let calcOperand1 = null;
+let calcOperator = null;
+let calcAwaitingOperand2 = false;
+let calcCurrentInput = '';
+let popupCount = 0;
+let equalsCount = 0;
+let gooseActive = false;
+let capsLock = false;
+let loginStage = 0; // 0=fresh, 1=first submit done, 2=second submit done
+let currentLetter = 25; // Z (index in alphabet)
+
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
+// ==================== LANDING PAGE ====================
+function acceptCookies() {
+  document.getElementById('cookie-popup').style.display = 'none';
+  playAudio('audio-butterfly');
+}
+
+function updateSelection() {
+  selectedOptions = Array.from(document.querySelectorAll('#landing-form input:checked')).map(cb => cb.value);
+}
+
+function tryGoNext() {
+  if (selectedOptions.length === 0) {
+    document.getElementById('job-popup').style.display = 'block';
+    return;
+  }
+  // Determine user's colorblind type by what they did NOT check
+  const allOptions = ['normal', 'rg', 'by', 'mono', 'tritanopia'];
+  const notChecked = allOptions.filter(o => !selectedOptions.includes(o));
+  // If they checked everything except 'rg', they ARE rg colorblind
+  if (notChecked.includes('rg') && !notChecked.includes('normal')) colorblindType = 'rg';
+  else if (notChecked.includes('by')) colorblindType = 'by';
+  else if (notChecked.includes('mono')) colorblindType = 'mono';
+  else colorblindType = 'normal';
+
+  stopAllAudio();
+  showPage('cvtest');
+  setupIshihara();
+}
+
+// ==================== COLOR VISION TEST ====================
+let cvAnswer = '6';
+
+function setupIshihara() {
+  const canvas = document.getElementById('ishihara-canvas');
+  const ctx = canvas.getContext('2d');
+  // Draw a simple Ishihara-style circle
+  // Background dots
+  const bgColor = colorblindType === 'rg' ? '#d4a017' : '#7abf7a';
+  const numColor = colorblindType === 'rg' ? '#7d4c1e' : '#c41e3a';
+  const numbers = ['6','8','12','29','74'];
+  cvAnswer = colorblindType === 'rg' ? '12' : '6';
+  const displayNum = colorblindType === 'rg' ? '12' : '6';
+
+  ctx.fillStyle = bgColor;
+  ctx.beginPath();
+  ctx.arc(130, 130, 125, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Random dots for background
+  for (let i = 0; i < 400; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const r = Math.random() * 110;
+    const x = 130 + r * Math.cos(angle);
+    const y = 130 + r * Math.sin(angle);
+    const radius = 5 + Math.random() * 8;
+    ctx.fillStyle = shadeColor(bgColor, Math.random() * 40 - 20);
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Draw number in contrasting color dots
+  ctx.font = 'bold 90px Arial';
+  ctx.fillStyle = numColor;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  // Simulate dots for the number
+  const offscreenCanvas = document.createElement('canvas');
+  offscreenCanvas.width = 260; offscreenCanvas.height = 260;
+  const octx = offscreenCanvas.getContext('2d');
+  octx.font = 'bold 100px Arial';
+  octx.fillStyle = 'black';
+  octx.textAlign = 'center';
+  octx.textBaseline = 'middle';
+  octx.fillText(displayNum, 130, 130);
+  const imgData = octx.getImageData(0, 0, 260, 260);
+
+  for (let i = 0; i < 300; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const r = Math.random() * 100;
+    const x = Math.floor(130 + r * Math.cos(angle));
+    const y = Math.floor(130 + r * Math.sin(angle));
+    const idx = (y * 260 + x) * 4;
+    const isInNumber = imgData.data[idx + 3] > 128;
+    const dotColor = isInNumber ? numColor : shadeColor(bgColor, Math.random() * 30 - 15);
+    const dotR = 6 + Math.random() * 6;
+    ctx.fillStyle = dotColor;
+    ctx.beginPath();
+    ctx.arc(x + 0, y + 0, dotR, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+function shadeColor(color, percent) {
+  const num = parseInt(color.replace('#',''), 16);
+  const r = Math.min(255, Math.max(0, (num >> 16) + percent));
+  const g = Math.min(255, Math.max(0, ((num >> 8) & 0xff) + percent));
+  const b = Math.min(255, Math.max(0, (num & 0xff) + percent));
+  return `rgb(${r|0},${g|0},${b|0})`;
+}
+
+function checkCVTest() {
+  const val = document.getElementById('cvtest-input').value.trim();
+  if (val === cvAnswer) {
+    stopAllAudio();
+    showPage('login');
+    setupLogin();
+  } else {
+    document.getElementById('cvtest-error').style.display = 'block';
+    document.getElementById('cvtest-input').value = '';
+    document.getElementById('cvtest-input').style.border = '6px solid red';
+  }
+}
+
+// ==================== LOGIN PAGE ====================
+const randomPasswords = ['P@ssw0rd!', 'hunter2', 'qwerty123!', 'Tr0ub4dor&3', 'correct-horse-battery', 'letmein99!'];
+
+function setupLogin() {
+  // Autofill random password
+  const pass = randomPasswords[Math.floor(Math.random() * randomPasswords.length)];
+  document.getElementById('login-password').value = pass;
+  document.getElementById('login-email').value = '';
+  
+  // Build keyboard - QWERTY order in one line
+  const keys = ['q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m',' ','0','1','2','3','4','5','6','7','8','9','@','.','_','-','CAPS'];
+  const kb = document.getElementById('keyboard-wrap');
+  kb.innerHTML = '';
+  keys.forEach(k => {
+    const btn = document.createElement('button');
+    btn.className = 'kb-key' + (k === 'CAPS' ? ' caps-key' : '');
+    btn.textContent = k === ' ' ? '⎵' : k;
+    btn.onclick = () => typeKey(k);
+    kb.appendChild(btn);
+  });
+
+  // Start bouncing submit button
+  playAudio('audio-baby-sticker');
+  startBouncing();
+  setupStaticCanvas();
+}
+
+function typeKey(k) {
+  const emailEl = document.getElementById('login-email');
+  if (k === 'CAPS') {
+    capsLock = !capsLock;
+    document.querySelectorAll('.kb-key:not(.caps-key)').forEach(btn => {
+      if (btn.textContent !== '⎵' && !btn.textContent.match(/[@._\-0-9]/)) {
+        btn.textContent = capsLock ? btn.textContent.toUpperCase() : btn.textContent.toLowerCase();
+      }
+    });
+    return;
+  }
+  const char = k === ' ' ? ' ' : (capsLock ? k.toUpperCase() : k);
+  emailEl.value += char;
+}
+
+// Bouncing submit button
+let bx = 100, by = 100, bvx = 3, bvy = 2;
+let bouncing = true;
+let speedMult = 1;
+
+function startBouncing() {
+  bx = 100; by = 200; bvx = 3; bvy = 2;
+  bouncing = true;
+  requestAnimationFrame(bounceFrame);
+}
+
+function bounceFrame() {
+  if (!bouncing) return;
+  const btn = document.getElementById('submit-wrap');
+  const w = window.innerWidth - 180;
+  const h = window.innerHeight - 100;
+  bx += bvx * speedMult;
+  by += bvy * speedMult;
+  if (bx <= 0 || bx >= w) bvx = -bvx;
+  if (by <= 0 || by >= h) bvy = -bvy;
+  bx = Math.max(0, Math.min(w, bx));
+  by = Math.max(0, Math.min(h, by));
+  btn.style.left = bx + 'px';
+  btn.style.top = by + 'px';
+  // Check hover
+  const rect = btn.getBoundingClientRect();
+  requestAnimationFrame(bounceFrame);
+}
+
+document.addEventListener('mousemove', (e) => {
+  const btn = document.getElementById('submit-wrap');
+  const rect = btn.getBoundingClientRect();
+  if (e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom) {
+    speedMult = 4;
+  } else {
+    speedMult = 1;
+  }
+});
+
+function handleSubmit() {
+  if (loginStage === 0) {
+    // First press - show confirm message
+    loginStage = 1;
+    document.getElementById('confirm-msg').style.display = 'block';
+    document.getElementById('overlay-bg').style.display = 'block';
+  } else if (loginStage === 2) {
+    // Third press - go to calculator
+    bouncing = false;
+    stopAllAudio();
+    showPage('calc');
+    setupCalcColors();
+  }
+}
+
+function handleConfirm() {
+  document.getElementById('confirm-msg').style.display = 'none';
+  loginStage = 2;
+  // Change audio
+  stopAllAudio();
+  playAudio('audio-one-more-time');
+  document.getElementById('overlay-bg').style.display = 'none';
+  document.getElementById('one-more-msg').style.display = 'block';
+  document.getElementById('overlay-bg').style.display = 'block';
+}
+
+// TV Static
+function setupStaticCanvas() {
+  const canvas = document.getElementById('static-canvas');
+  if (!canvas) return;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const ctx = canvas.getContext('2d');
+  function drawStatic() {
+    const imageData = ctx.createImageData(canvas.width, canvas.height);
+    for (let i = 0; i < imageData.data.length; i += 4) {
+      const v = Math.random() > 0.5 ? 255 : 0;
+      imageData.data[i] = v;
+      imageData.data[i+1] = v;
+      imageData.data[i+2] = v;
+      imageData.data[i+3] = 30;
+    }
+    ctx.putImageData(imageData, 0, 0);
+    if (document.getElementById('page-login').classList.contains('active')) {
+      requestAnimationFrame(drawStatic);
+    }
+  }
+  drawStatic();
+}
+
+// ==================== CALCULATOR ====================
+const numberSounds = {
+  '1':'audio-v1','2':'audio-v2','3':'audio-v3','4':'audio-v4','5':'audio-v5',
+  '6':'audio-v6','7':'audio-v7','8':'audio-v8','9':'audio-v9','0':'audio-v0'
+};
+
+function setupCalcColors() {
+  // Color the calc based on colorblind type
+  const colors = {
+    rg: ['#228B22','#228B22','#8B0000','#228B22','#8B0000','#228B22','#8B0000','#228B22','#8B0000','#228B22'],
+    by: ['#00008B','#FFD700','#00008B','#FFD700','#00008B','#FFD700','#00008B','#FFD700','#00008B','#FFD700'],
+    mono: ['#333','#555','#777','#999','#bbb','#333','#555','#777','#999','#bbb'],
+    normal: ['#e74c3c','#e67e22','#f1c40f','#2ecc71','#1abc9c','#3498db','#9b59b6','#e91e63','#673ab7','#607d8b']
+  };
+  const c = colors[colorblindType] || colors.normal;
+  document.querySelectorAll('.num-img-fallback').forEach((el, i) => {
+    el.style.background = c[i % c.length];
+  });
+}
+
+function calcPress(digit) {
+  playSound(numberSounds[digit]);
+  calcCurrentInput += digit;
+  updateCalcDisplay(calcCurrentInput);
+  checkSpecialNumbers(calcCurrentInput);
+  checkSequences(calcCurrentInput);
+}
+
+function calcOp(op) {
+  const sounds = {'+':'audio-wow','-':'audio-ahlelele','÷':'audio-urphonelinging','×':'audio-baka'};
+  playSound(sounds[op]);
+  if (calcCurrentInput !== '') {
+    calcOperand1 = calcCurrentInput;
+    calcCurrentInput = '';
+  }
+  calcOperator = op;
+  calcAwaitingOperand2 = true;
+  updateCalcDisplay((calcOperand1 || '0') + ' ' + op + ' ');
+}
+
+function calcClear() {
+  calcDisplay = '0';
+  calcOperand1 = null;
+  calcOperator = null;
+  calcCurrentInput = '';
+  calcAwaitingOperand2 = false;
+  updateCalcDisplay('0');
+}
+
+function calcEquals() {
+  if (calcOperand1 === null || calcCurrentInput === '') return;
+  
+  let a = parseInputNumber(calcOperand1);
+  let b = parseInputNumber(calcCurrentInput);
+  let result;
+
+  // Special rules
+  const rawA = calcOperand1;
+  const rawB = calcCurrentInput;
+
+  // 9+10 = 21
+  if ((rawA === '9' && rawB === '10' && calcOperator === '+') ||
+      (rawA === '10' && rawB === '9' && calcOperator === '+')) {
+    result = 21;
+    triggerPopup('popup-21');
+  } else if (rawA === '6' && rawB === '7' && calcOperator === '+') {
+    // 6+7 = 67
+    result = 67;
+    triggerPopup('popup-67');
+  } else {
+    switch(calcOperator) {
+      case '+': result = a + b; break;
+      case '-': result = a - b; break;
+      case '×': result = a * b; break;
+      case '÷': result = b !== 0 ? a / b : 'ERROR (nice try)'; break;
+      default: result = b;
+    }
+  }
+
+  checkSpecialNumbers(String(result));
+  updateCalcDisplay(String(result));
+  calcCurrentInput = String(result);
+  calcOperand1 = null;
+  calcOperator = null;
+
+  // Equals popup (alternating nick/judy)
+  equalsCount++;
+  const vid = document.getElementById('equals-video');
+  vid.src = equalsCount % 2 === 1 ? 'videos/nick.mp4' : 'videos/judy.mp4';
+  document.getElementById('equals-popup').style.display = 'block';
+  document.getElementById('overlay-bg').style.display = 'block';
+}
+
+function parseInputNumber(str) {
+  // If contains only 0s and 1s, treat as binary
+  if (/^[01]+$/.test(str) && str.length > 0) {
+    return parseInt(str, 2);
+  }
+  return parseFloat(str) || 0;
+}
+
+function checkSpecialNumbers(val) {
+  const n = parseFloat(val);
+  const s = String(val);
+  if (s.includes('21') || n === 21) { triggerPopup('popup-21'); playSound('audio-wow'); }
+  if (n === 25 || s === '25') triggerPopup('popup-25');
+  if (n === 17 || s.includes('17')) triggerPopup('popup-17');
+  if (n === 15 || s === '15') playSound('audio-burgerking');
+  if (n === 44 || s === '44') playSound('audio-44');
+  if (n === 19 || s === '19') playSound('audio-19beans');
+  if (s === '314' || n === 314) triggerPopup('popup-314');
+  if (s === '1738' || n === 1738) triggerPopup('popup-1738');
+  if (s === '68' || n === 68) triggerPopup('popup-68');
+}
+
+function checkSequences(s) {
+  if (s === '1573') playSound('audio-ripgranny');
+}
+
+let popupQueue = [];
+
+function triggerPopup(id) {
+  popupCount++;
+  const el = document.getElementById(id);
+  if (el) {
+    el.style.display = 'block';
+    el.style.zIndex = 8000 + popupCount;
+    document.getElementById('overlay-bg').style.display = 'block';
+  }
+  // Every 4th popup, show goose
+  if (popupCount % 4 === 0 && !gooseActive) {
+    triggerGoose();
+  }
+}
+
+function closePopup(id) {
+  document.getElementById(id).style.display = 'none';
+  // Check if any popups still open
+  const openPopups = document.querySelectorAll('.meme-popup[style*="block"]');
+  if (openPopups.length === 0 && document.getElementById('equals-popup').style.display !== 'block') {
+    document.getElementById('overlay-bg').style.display = 'none';
+  }
+}
+
+function closeEqualsPopup() {
+  document.getElementById('equals-popup').style.display = 'none';
+  document.getElementById('overlay-bg').style.display = 'none';
+}
+
+function triggerGoose() {
+  gooseActive = true;
+  const goose = document.getElementById('goose-popup');
+  goose.style.display = 'block';
+  const emojis = ['🦆','🦅','🦉','🐦','🦚','🦜'];
+  document.getElementById('goose-content').textContent = emojis[Math.floor(Math.random() * emojis.length)];
+  goose.style.animation = 'none';
+  goose.offsetHeight; // reflow
+  goose.style.animation = 'gooseSlide 8s linear forwards';
+}
+
+function closeGoose() {
+  document.getElementById('goose-popup').style.display = 'none';
+  gooseActive = false;
+}
+
+function updateCalcDisplay(val) {
+  document.getElementById('calc-display').textContent = val;
+}
+
+// ==================== SUGGESTIONS PAGE ====================
+function prevLetter() {
+  currentLetter = (currentLetter - 1 + 26) % 26;
+  document.getElementById('letter-display').textContent = alphabet[currentLetter];
+}
+
+// ==================== AUDIO ====================
+function playAudio(id) {
+  const el = document.getElementById(id);
+  if (el) { el.currentTime = 0; el.play().catch(()=>{}); }
+}
+
+function playSound(id) {
+  const el = document.getElementById(id);
+  if (el) { el.currentTime = 0; el.play().catch(()=>{}); }
+}
+
+function stopAllAudio() {
+  document.querySelectorAll('audio').forEach(a => { a.pause(); a.currentTime = 0; });
+}
+
+// ==================== PAGE ROUTING ====================
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  // Stop all audio when switching except on specific pages
+  stopAllAudio();
+  if (name === 'landing') playAudio('audio-butterfly');
+  if (name === 'login') { /* audio set up in setupLogin */ }
+}
+
+// Allow direct URL navigation to suggestions
+window.addEventListener('hashchange', () => {
+  if (window.location.hash === '#suggestions') showPage('suggestions');
+});
+if (window.location.hash === '#suggestions') showPage('suggestions');
+
+// Boot
+window.onload = () => {
+  // Try to play cookie audio
+  document.getElementById('audio-cookies').play().catch(()=>{});
+};
+</script>
+</body>
+</html>
