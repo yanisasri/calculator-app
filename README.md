@@ -32,11 +32,11 @@ cursed-calculator/
 
 ## 👩‍💻 Authors
 
-**Mae Lakmun** -- GitHub: [@maerl404](https://github.com/maerl404)
+**Mae Lakmun**: [@maerl404](https://github.com/maerl404)
 
-**Katherine Gamboa** -- GitHub: [@kdafrose](https://github.com/kdafrose)
+**Katherine Gamboa**: [@kdafrose](https://github.com/kdafrose)
 
-**Yanisa Srisa-ard** -- GitHub: [@yanisasri](https://github.com/yanisasri)
+**Yanisa Srisa-ard**: [@yanisasri](https://github.com/yanisasri)
 
 ---
 
