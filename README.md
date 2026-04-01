@@ -2,7 +2,7 @@
 
 Welcome to the **CALCUMLATTOR 3000 TM**! Our submission for Calgary Lacks 2026 (hackathon)
 
-<!-- [**Try it now!**](https://calculator.netlify.app) -->
+[**Try it now!**](https://calcumlattor3000tm.netlify.app/)
 
 ---
 
