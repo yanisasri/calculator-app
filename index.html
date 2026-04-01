@@ -210,19 +210,11 @@
     background: red; color: white; border: none; padding: 2px 10px; font-family: 'Boogaloo';
   }
   .meme-popup img, .meme-popup video { max-width: 300px; max-height: 300px; display: block; margin: 0 auto; }
-  /* Goose popup */
-  #goose-popup {
-    position: fixed; bottom: 0; z-index: 9000;
-    animation: gooseSlide 8s linear forwards;
-    display: none;
-  }
+
   @keyframes gooseSlide {
     0% { right: -400px; }
     100% { right: 0; }
   }
-  #goose-popup .goose-img { font-size: 80px; }
-  #goose-popup .goose-meme { width: 250px; background: white; border: 5px solid black; display: inline-block; vertical-align: bottom; padding: 10px; position: relative; }
-  #goose-popup .close-x { position: absolute; top: 5px; right: 5px; background: red; color: white; border: none; cursor: pointer; font-size: 20px; padding: 2px 8px; }
   /* equals alternating popup */
   #equals-popup {
     display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
@@ -455,7 +447,6 @@
   <div id="qr-section">
     <h3>🤔 want to give feedback or something idk</h3>
     <div class="qr-box">
-      <div class="qr-label">idk where this will take you tbh</div>
       <div class="qr-placeholder">
         <img width="100" height="100" src="images/qr-fake.png">
           <rect width="100" height="100" fill="white"/>
@@ -476,7 +467,6 @@
       </div>
     </div>
     <div class="qr-box">
-      <div class="qr-label">lowkey idk which is which lol</div>
       <div class="qr-placeholder">
         <img width="100" height="100" src="images/qr-suggestions.png">
           <rect width="100" height="100" fill="white"/>
@@ -504,7 +494,7 @@
 <div id="popup-21" class="meme-popup">
   <button class="close-x" onclick="closePopup('popup-21')">X</button>
   <h2 style="font-family:Boogaloo">9 + 10 = 21 😤</h2>
-  <video src="videos/21-meme.mp4" autoplay loop controls style="max-width:300px"></video>
+  <video loop controls style="max-width:300px"></video>
 </div>
 <div id="popup-25" class="meme-popup">
   <button class="close-x" onclick="closePopup('popup-25')">X</button>
@@ -512,38 +502,29 @@
 </div>
 <div id="popup-67" class="meme-popup">
   <button class="close-x" onclick="closePopup('popup-67')">X</button>
-  <video src="videos/67.mp4" autoplay loop controls style="max-width:300px"></video>
+  <video loop controls style="max-width:300px"></video>
 </div>
 <div id="popup-17" class="meme-popup">
   <button class="close-x" onclick="closePopup('popup-17')">X</button>
-  <video src="videos/she-was-17.mp4" autoplay loop controls style="max-width:300px"></video>
+  <video loop controls style="max-width:300px"></video>
 </div>
 <div id="popup-314" class="meme-popup">
   <button class="close-x" onclick="closePopup('popup-314')">X</button>
-  <video src="videos/314-pie.mp4" autoplay loop controls style="max-width:300px"></video>
+  <video loop controls style="max-width:300px"></video>
   <p style="font-family:Comic Neue">YOU ARE BEING PIED 🥧</p>
 </div>
 <div id="popup-1738" class="meme-popup">
   <button class="close-x" onclick="closePopup('popup-1738')">X</button>
-  <video src="videos/1738.mp4" autoplay loop controls style="max-width:300px"></video>
+  <video loop controls style="max-width:300px"></video>
 </div>
 <div id="popup-68" class="meme-popup">
   <button class="close-x" onclick="closePopup('popup-68')">X</button>
-  <video src="videos/68.mp4" autoplay loop controls style="max-width:300px"></video>
-</div>
-
-<!-- Goose popup -->
-<div id="goose-popup">
-  <span class="goose-img">🦆</span>
-  <div class="goose-meme">
-    <button class="close-x" onclick="closeGoose()">X</button>
-    <div id="goose-content" style="font-size:40px;text-align:center;padding:20px">🦆</div>
-  </div>
+  <video loop controls style="max-width:300px"></video>
 </div>
 
 <!-- Equals popup (alternating nick/judy) -->
 <div id="equals-popup">
-  <video id="equals-video" src=vid.src autoplay loop controls style="width:280px"></video>
+  <video id="equals-video" loop controls style="width:280px"></video>
   <button class="close-x" onclick="closeEqualsPopup()">Close</button>
 </div>
 
@@ -552,19 +533,17 @@
   <h1>suggestions to make our site better!</h1>
   <p style="font-family:Comic Neue;text-align:center;color:#666;margin-bottom:20px">(we really care about your feedback! totally.)</p>
 
+  <div id="letter-keyboard">
+    <div id="letter-display">Z</div>
+    <button id="letter-back" onclick="prevLetter()">← previous letter</button>
+    <p>(only goes backwards. you're welcome.)</p>
+  </div>
+
   <div class="fake-textbox">Name</div>
   <div class="fake-textbox">Email address</div>
   <div class="fake-textbox" style="min-height:120px">Your suggestions</div>
   <div class="fake-textbox">How much do you hate this website? (1-10)</div>
   <div class="fake-textbox">Other thoughts</div>
-
-  <div id="letter-keyboard">
-    <h2 style="font-family:Dancing Script;font-size:32px;color:#cc0000">Use our keyboard to type! (no submit button lol)</h2>
-    <div id="letter-display">Z</div>
-    <button id="letter-back" onclick="prevLetter()">← previous letter</button>
-    <p>(only goes backwards. you're welcome.)</p>
-    <p style="font-size:12px">there's no enter button. there's also no textbox. enjoy.</p>
-  </div>
 
   <div style="text-align:center;margin-top:40px">
     <button onclick="showPage('calc')" style="background:#cc0000;color:white;border:none;padding:15px 30px;font-size:20px;cursor:pointer;font-family:Boogaloo">← go back to the calculator</button>
@@ -842,7 +821,6 @@ const numberSounds = {
 };
 
 function setupCalcColors() {
-  // Color the calc based on colorblind type
   const colors = {
     rg: ['#228B22','#228B22','#8B0000','#228B22','#8B0000','#228B22','#8B0000','#228B22','#8B0000','#228B22'],
     by: ['#00008B','#FFD700','#00008B','#FFD700','#00008B','#FFD700','#00008B','#FFD700','#00008B','#FFD700'],
@@ -886,24 +864,23 @@ function calcClear() {
 
 function calcEquals() {
   if (calcOperand1 === null || calcCurrentInput === '') return;
-  
+
   let a = parseInputNumber(calcOperand1);
   let b = parseInputNumber(calcCurrentInput);
   let result;
-
-  // Special rules
   const rawA = calcOperand1;
   const rawB = calcCurrentInput;
+  let specialPopupTriggered = false;
 
-  // 9+10 = 21
   if ((rawA === '9' && rawB === '10' && calcOperator === '+') ||
       (rawA === '10' && rawB === '9' && calcOperator === '+')) {
     result = 21;
     triggerPopup('popup-21');
+    specialPopupTriggered = true;
   } else if (rawA === '6' && rawB === '7' && calcOperator === '+') {
-    // 6+7 = 67
     result = 67;
     triggerPopup('popup-67');
+    specialPopupTriggered = true;
   } else {
     switch(calcOperator) {
       case '+': result = a + b; break;
@@ -914,32 +891,34 @@ function calcEquals() {
     }
   }
 
-  checkSpecialNumbers(String(result));
   updateCalcDisplay(String(result));
   calcCurrentInput = String(result);
   calcOperand1 = null;
   calcOperator = null;
 
+  if (!specialPopupTriggered) checkSpecialNumbers(String(result));
+
   // Equals popup (alternating nick/judy)
   equalsCount++;
   const vid = document.getElementById('equals-video');
   vid.src = equalsCount % 2 === 1 ? 'videos/nick.mp4' : 'videos/judy.mp4';
+  vid.load();
+  stopCurrentMedia();
   document.getElementById('equals-popup').style.display = 'block';
   document.getElementById('overlay-bg').style.display = 'block';
+  playVideo(vid);
 }
 
 function parseInputNumber(str) {
-  // If contains only 0s and 1s, treat as binary
-  if (/^[01]+$/.test(str) && str.length > 0) {
-    return parseInt(str, 2);
-  }
+  if (/^[01]+$/.test(str) && str.length > 0) return parseInt(str, 2);
   return parseFloat(str) || 0;
 }
 
 function checkSpecialNumbers(val) {
   const n = parseFloat(val);
   const s = String(val);
-  if (s.includes('21') || n === 21) { triggerPopup('popup-21'); playSound('audio-wow'); }
+  if (s.includes('21') || n === 21) triggerPopup('popup-21');
+  if (s.includes('67') || n === 67) triggerPopup('popup-67');
   if (n === 25 || s === '25') triggerPopup('popup-25');
   if (n === 17 || s.includes('17')) triggerPopup('popup-17');
   if (n === 15 || s === '15') playSound('audio-burgerking');
@@ -956,23 +935,41 @@ function checkSequences(s) {
 
 let popupQueue = [];
 
+// Video srcs assigned at trigger time so browser allows autoplay
+const popupVideos = {
+  'popup-21':   'videos/21-meme.mp4',
+  'popup-67':   'videos/67.mp4',
+  'popup-17':   'videos/she-was-17.mp4',
+  'popup-314':  'videos/314-pie.mp4',
+  'popup-1738': 'videos/1738.mp4',
+  'popup-68':   'videos/68.mp4',
+};
+
 function triggerPopup(id) {
   popupCount++;
+  stopCurrentMedia();
   const el = document.getElementById(id);
   if (el) {
     el.style.display = 'block';
     el.style.zIndex = 8000 + popupCount;
     document.getElementById('overlay-bg').style.display = 'block';
+    const vid = el.querySelector('video');
+    if (vid && popupVideos[id]) {
+      vid.src = popupVideos[id];
+      vid.load();
+      playVideo(vid);
+    }
   }
-  // Every 4th popup, show goose
-  if (popupCount % 4 === 0 && !gooseActive) {
-    triggerGoose();
-  }
+  if (popupCount % 4 === 0 && !gooseActive) triggerGoose();
 }
 
 function closePopup(id) {
-  document.getElementById(id).style.display = 'none';
-  // Check if any popups still open
+  const el = document.getElementById(id);
+  el.querySelectorAll('video').forEach(v => {
+    v.pause(); v.currentTime = 0; v.src = '';
+    if (currentVid === v) currentVid = null;
+  });
+  el.style.display = 'none';
   const openPopups = document.querySelectorAll('.meme-popup[style*="block"]');
   if (openPopups.length === 0 && document.getElementById('equals-popup').style.display !== 'block') {
     document.getElementById('overlay-bg').style.display = 'none';
@@ -980,24 +977,13 @@ function closePopup(id) {
 }
 
 function closeEqualsPopup() {
-  document.getElementById('equals-popup').style.display = 'none';
+  const el = document.getElementById('equals-popup');
+  el.querySelectorAll('video').forEach(v => {
+    v.pause(); v.currentTime = 0;
+    if (currentVid === v) currentVid = null;
+  });
+  el.style.display = 'none';
   document.getElementById('overlay-bg').style.display = 'none';
-}
-
-function triggerGoose() {
-  gooseActive = true;
-  const goose = document.getElementById('goose-popup');
-  goose.style.display = 'block';
-  const emojis = ['🦆','🦅','🦉','🐦','🦚','🦜'];
-  document.getElementById('goose-content').textContent = emojis[Math.floor(Math.random() * emojis.length)];
-  goose.style.animation = 'none';
-  goose.offsetHeight; // reflow
-  goose.style.animation = 'gooseSlide 8s linear forwards';
-}
-
-function closeGoose() {
-  document.getElementById('goose-popup').style.display = 'none';
-  gooseActive = false;
 }
 
 function updateCalcDisplay(val) {
@@ -1011,6 +997,15 @@ function prevLetter() {
 }
 
 // ==================== AUDIO ====================
+// Background music plays independently; soundboard cuts off on each new press
+let currentSfx = null;
+let currentVid = null;
+
+function stopCurrentMedia() {
+  if (currentSfx) { currentSfx.pause(); currentSfx.currentTime = 0; currentSfx = null; }
+  if (currentVid) { currentVid.pause(); currentVid.currentTime = 0; currentVid = null; }
+}
+
 function playAudio(id) {
   const el = document.getElementById(id);
   if (el) { el.currentTime = 0; el.play().catch(()=>{}); }
@@ -1018,21 +1013,34 @@ function playAudio(id) {
 
 function playSound(id) {
   const el = document.getElementById(id);
-  if (el) { el.currentTime = 0; el.play().catch(()=>{}); }
+  if (!el) return;
+  stopCurrentMedia();
+  currentSfx = el;
+  el.currentTime = 0;
+  el.play().catch(()=>{});
+}
+
+function playVideo(el) {
+  if (!el) return;
+  stopCurrentMedia();
+  currentVid = el;
+  el.currentTime = 0;
+  el.play().catch(()=>{});
 }
 
 function stopAllAudio() {
   document.querySelectorAll('audio').forEach(a => { a.pause(); a.currentTime = 0; });
+  document.querySelectorAll('video').forEach(v => { v.pause(); v.currentTime = 0; });
+  currentSfx = null;
+  currentVid = null;
 }
 
 // ==================== PAGE ROUTING ====================
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
-  // Stop all audio when switching except on specific pages
   stopAllAudio();
-  if (name === 'landing') playAudio('audio-butterfly');
-  if (name === 'login') { /* audio set up in setupLogin */ }
+  // landing audio: handled by acceptCookies(); login audio: handled by setupLogin()
 }
 
 // Allow direct URL navigation to suggestions
